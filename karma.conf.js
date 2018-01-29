@@ -22,6 +22,7 @@ module.exports = function(config) {
 
       './src/js/app.js',
       './src/js/controllers/**/*.js',
+      './src/js/services/**/*.js',
       './src/js/specs/**/*.js',
     ],
 
@@ -40,7 +41,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['spec'],
+    reporters: ['progress', 'spec'],
 
 
     // web server port

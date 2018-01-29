@@ -1,1 +1,17 @@
 <h1>{{ message }}</h1>
+
+<form>
+    <label for="">Busca por usuário</label>
+    <input type="text" ng-model="query">
+    <button type="button" ng-click="getUserByUsername()">Enviar</button>
+</form>
+
+<p>ID: {{ user.id }}</p>
+<p>Nome: {{ user.name }}</p>
+<p>Login: {{ user.login }}</p>
+<p>Local: {{ user.location }}</p>
+<form>
+    <textarea name="description" id="description" ng-model="description" cols="30" rows="10"></textarea>
+</form>
+
+<p>{{ userProjectList }}</p>

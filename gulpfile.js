@@ -1,6 +1,7 @@
 const gulp = require('gulp');
 const concat = require('gulp-concat');
 const browserSync = require('browser-sync').create();
+const reload = browserSync.reload;
 
 const scripts = require('./scripts');
 const styles = require('./styles');
@@ -33,23 +34,21 @@ gulp.task('html', function() {
         }));
 });
 
-gulp.task('build', function() {
-    gulp.start(['css', 'js', 'html']);
-});
-
 gulp.task('browser-sync', function() {
     browserSync.init(null, {
         open: false,
         server: {
-            baseDir: 'dist'
+            baseDir: './dist'
         }
     });
 });
 
-gulp.task('start', function() {
-    devMode = true;
-    gulp.start(['build', 'browser-sync']);
-    gulp.watch(['./src/css/**/*.css', 'css']);
-    gulp.watch(['./src/js/**/*.js', 'js']);
-    gulp.watch(['./src/views/**/*.html', 'html']);
+gulp.task('run',['css', 'js', 'html']);
+
+gulp.task('watch', function() {
+    gulp.watch('./src/css/**/*.css', ['css']);
+    gulp.watch('./src/js/**/*.js', ['js']);
+    gulp.watch('./src/views/**/*.html', ['html']).on("change", reload);
 });
+
+gulp.task('default', ['run', 'watch', 'browser-sync']);
